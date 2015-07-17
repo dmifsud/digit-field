@@ -1,6 +1,6 @@
 {
   "name": "digit-field",
-  "version": "0.9.1",
+  "version": "0.9.3",
   "homepage": "https://github.com/dmifsud/digit-field",
   "authors": [
     "David Mifsud <david.mifsud89@gmail.com>"
@@ -23,6 +23,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.3"
+    "angular": "~1.4.3",
+    "angular-mocks": "~1.4.3",
+    "jquery": "~2.1.4"
   }
 }

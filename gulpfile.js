@@ -3,7 +3,9 @@ var gulp = require('gulp'),
     packagejson = require('./package.json'),
     runSequence = require('run-sequence'),
     addStream = require('add-stream'),
-    angularTemplateCache = require('gulp-angular-templatecache');
+    angularTemplateCache = require('gulp-angular-templatecache'),
+    karma = require('gulp-karma'),
+    Server = require('karma').Server;
 
 var prepareTemplates = function(){
   return gulp.src('src/templates/**/*.html')
@@ -38,7 +40,16 @@ gulp.task('clean', function(){
         .pipe($.clean());
 });
 
-gulp.task('dist', ['js','less']);
+gulp.task('test', function(done){
+    new Server({
+      configFile: __dirname + '/karma.conf.js',
+      singleRun: true
+    }, done).start();
+});
+
+gulp.task('dist', function(){
+  runSequence(['js','less'], 'test');
+});
 
 gulp.task('default', function(){
   runSequence('clean', ['dist']);
