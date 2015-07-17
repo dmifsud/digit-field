@@ -11,11 +11,9 @@ var prepareTemplates = function(){
 };
 
 gulp.task('js', function(){
-  var minifiedVersion = "digit.field."+packagejson.version+".min.js";
+  var minifiedVersion = "digit.field.min.js";
 
   return gulp.src('src/*.js')
-    //.pipe(ng annotate, minify, etc)
-    .pipe(gulp.dest('build/scripts'))
   .pipe($.jshint())
   .pipe($.jshint.reporter('jshint-stylish'))
   .pipe($.jshint.reporter('fail'))

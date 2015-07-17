@@ -1,5 +1,5 @@
-angular.module('digit-field-template', []);
-angular.module('digit-field',['digit-field-template'])
+angular.module('templates', []);
+angular.module('digit-field',['templates'])
 .directive('digitField', function($filter){
   'use strict';
     return {
