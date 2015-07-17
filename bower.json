@@ -1,0 +1,28 @@
+{
+  "name": "digit-field",
+  "version": "0.9.0",
+  "homepage": "https://github.com/dmifsud/digit-field",
+  "authors": [
+    "David Mifsud <david.mifsud89@gmail.com>"
+  ],
+  "description": "Angular directive for mobile digit fields",
+  "keywords": [
+    "angular",
+    "mobile",
+    "numeric",
+    "input",
+    "field",
+    "decimal"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3"
+  }
+}
