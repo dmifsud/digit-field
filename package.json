@@ -1,6 +1,6 @@
 {
   "name": "digit-field",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Angular directive for mobile digit fields",
   "main": "gulpfile.js",
   "scripts": {
