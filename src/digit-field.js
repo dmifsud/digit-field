@@ -6,6 +6,7 @@ angular.module('digit-field',['templates'])
       restrict: 'E',
       templateUrl: 'digit-field.html',
       require: 'ngModel',
+      replace: true,
       scope: {
         actualModel: '=ngModel'
       },
