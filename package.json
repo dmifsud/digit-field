@@ -1,6 +1,6 @@
 {
   "name": "digit-field",
-  "version": "0.9.1",
+  "version": "0.9.3",
   "description": "Angular directive for mobile digit fields",
   "main": "gulpfile.js",
   "scripts": {
@@ -31,10 +31,16 @@
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^1.11.2",
+    "gulp-karma": "0.0.4",
     "gulp-less": "^3.0.3",
     "gulp-load-plugins": "^0.10.0",
     "gulp-uglify": "^1.2.0",
+    "jasmine-core": "^2.3.4",
     "jshint-stylish": "^2.0.1",
+    "karma": "^0.13.1",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^1.9.17",
     "run-sequence": "^1.1.1"
   }
 }
