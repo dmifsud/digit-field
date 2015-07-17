@@ -1,4 +1,4 @@
-# Digit field (v0.9.1) [![Build Status](https://travis-ci.org/dmifsud/digit-field.svg?branch=v%2F0.9.2)](https://travis-ci.org/dmifsud/digit-field)
+# Digit field (v0.9.2) [![Build Status](https://travis-ci.org/dmifsud/digit-field.svg?branch=v%2F0.9.2)](https://travis-ci.org/dmifsud/digit-field)
 
 For mobile devices, specifically built for iOS to show the digit keypad.
 
