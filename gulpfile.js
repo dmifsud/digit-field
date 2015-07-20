@@ -49,8 +49,9 @@ gulp.task('test', function(done){
 });
 
 var e2eTest = function(param){
+
   gulp.task('e2e:'+param, function(){
-    gulp.src(['./tests/e2e/*.js'])
+    return gulp.src(['./tests/e2e/*.js'])
       .pipe(angularProtractor({
           'configFile': param === "travis" ? 'protractor.travis.conf.js' : 'protractor.conf.js',
           'args': ['--baseUrl', 'http://127.0.0.1:8000'],
@@ -64,14 +65,27 @@ var e2eTest = function(param){
 e2eTest("local");
 e2eTest("travis");
 
+
+gulp.task('connect', function() {
+  $.connect.server({
+    root: '.',
+    port: 5401
+  });
+});
+
+gulp.task('disconnect', function(){
+  $.connect.serverClose();
+});
+
+
 gulp.task('dist', function(){
   runSequence(['js','less'], 'test');
 });
 
 gulp.task('travis', function(){
-  runSequence('dist', 'e2e:travis');
+  runSequence('dist', 'connect', 'e2e:travis', 'disconnect');
 });
 
 gulp.task('default', function(){
-  runSequence('clean', ['dist'], "e2e:local");
+  runSequence('clean', ['dist'], 'connect', "e2e:local" , 'disconnect');
 });
