@@ -3,8 +3,19 @@
 <head>
   <title>Demo</title>
   <script src="bower_components/angular/angular.min.js"></script>
+  <script src="dist/digit.field.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="dist/css/digit-field.css"/>
+  <script>
+    angular.module('app', ['digit-field']);
+  </script>
 </head>
 <body>
   <h1>Demo</h1>
+  <div ng-app="app">
+    <digit-field ng-model="testModel"></digit-field>
+    <div id="test-output">
+      {{testModel}}
+    </div>
+  </div>
 </body>
 </html>
