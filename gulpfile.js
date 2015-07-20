@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     addStream = require('add-stream'),
     angularTemplateCache = require('gulp-angular-templatecache'),
     karma = require('gulp-karma'),
-    Server = require('karma').Server;
+    Server = require('karma').Server,
+    angularProtractor = require('gulp-angular-protractor');
 
 var prepareTemplates = function(){
   return gulp.src('src/templates/**/*.html')
@@ -47,10 +48,44 @@ gulp.task('test', function(done){
     }, done).start();
 });
 
+var e2eTest = function(param){
+
+  gulp.task('e2e:'+param, function(){
+    return gulp.src(['./tests/e2e/*.js'])
+      .pipe(angularProtractor({
+          'configFile': __dirname + '/tests/e2e/config/protractor/' + (param === "travis" ? 'protractor.travis.conf.js' : 'protractor.conf.js'),
+          'args': ['--baseUrl', 'http://127.0.0.1:8000'],
+          'autoStartStopServer': true,
+          'debug': false
+      }))
+      .on('error', function(e) { throw e; });
+  });
+};
+
+e2eTest("local");
+e2eTest("travis");
+
+
+gulp.task('connect', function() {
+  $.connect.server({
+    root: '.',
+    port: 5401
+  });
+});
+
+gulp.task('disconnect', function(){
+  $.connect.serverClose();
+});
+
+
 gulp.task('dist', function(){
   runSequence(['js','less'], 'test');
 });
 
+gulp.task('travis', function(){
+  runSequence('dist', 'connect', 'e2e:travis', 'disconnect');
+});
+
 gulp.task('default', function(){
-  runSequence('clean', ['dist']);
+  runSequence('clean', ['dist'], 'connect', "e2e:local" , 'disconnect');
 });
