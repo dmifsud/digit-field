@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     addStream = require('add-stream'),
     angularTemplateCache = require('gulp-angular-templatecache'),
     karma = require('gulp-karma'),
-    Server = require('karma').Server;
+    Server = require('karma').Server,
+    angularProtractor = require('gulp-angular-protractor');
 
 var prepareTemplates = function(){
   return gulp.src('src/templates/**/*.html')
@@ -47,8 +48,19 @@ gulp.task('test', function(done){
     }, done).start();
 });
 
+gulp.task('e2e', function(){
+  gulp.src(['./tests/e2e/*.js'])
+    .pipe(angularProtractor({
+        'configFile': 'protractor.conf.js',
+        'args': ['--baseUrl', 'http://127.0.0.1:8000'],
+        'autoStartStopServer': true,
+        'debug': false
+    }))
+    .on('error', function(e) { throw e; });
+});
+
 gulp.task('dist', function(){
-  runSequence(['js','less'], 'test');
+  runSequence(['js','less'], 'test','e2e');
 });
 
 gulp.task('default', function(){

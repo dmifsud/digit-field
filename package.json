@@ -27,6 +27,7 @@
   "devDependencies": {
     "add-stream": "^1.0.0",
     "gulp": "^3.9.0",
+    "gulp-angular-protractor": "0.0.2",
     "gulp-angular-templatecache": "^1.7.0",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
