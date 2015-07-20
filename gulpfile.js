@@ -53,7 +53,7 @@ var e2eTest = function(param){
   gulp.task('e2e:'+param, function(){
     return gulp.src(['./tests/e2e/*.js'])
       .pipe(angularProtractor({
-          'configFile': param === "travis" ? 'protractor.travis.conf.js' : 'protractor.conf.js',
+          'configFile': __dirname + '/tests/e2e/config/protractor/' + (param === "travis" ? 'protractor.travis.conf.js' : 'protractor.conf.js'),
           'args': ['--baseUrl', 'http://127.0.0.1:8000'],
           'autoStartStopServer': true,
           'debug': false

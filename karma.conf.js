@@ -20,7 +20,7 @@ module.exports = function(config) {
       'bower_components/angular/angular.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'dist/digit.field.min.js',
-      'tests/*spec.js'
+      'tests/unit/*spec.js'
     ],
 
 
