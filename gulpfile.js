@@ -48,21 +48,30 @@ gulp.task('test', function(done){
     }, done).start();
 });
 
-gulp.task('e2e', function(){
-  gulp.src(['./tests/e2e/*.js'])
-    .pipe(angularProtractor({
-        'configFile': 'protractor.conf.js',
-        'args': ['--baseUrl', 'http://127.0.0.1:8000'],
-        'autoStartStopServer': true,
-        'debug': false
-    }))
-    .on('error', function(e) { throw e; });
-});
+var e2eTest = function(param){
+  gulp.task('e2e:'+param, function(){
+    gulp.src(['./tests/e2e/*.js'])
+      .pipe(angularProtractor({
+          'configFile': param === "travis" ? 'protractor.travis.conf.js' : 'protractor.conf.js',
+          'args': ['--baseUrl', 'http://127.0.0.1:8000'],
+          'autoStartStopServer': true,
+          'debug': false
+      }))
+      .on('error', function(e) { throw e; });
+  });
+};
+
+e2eTest("local");
+e2eTest("travis");
 
 gulp.task('dist', function(){
-  runSequence(['js','less'], 'test','e2e');
+  runSequence(['js','less'], 'test');
+});
+
+gulp.task('travis', function(){
+  runSequence('dist', 'e2e:travis');
 });
 
 gulp.task('default', function(){
-  runSequence('clean', ['dist']);
+  runSequence('clean', ['dist'], "e2e:local");
 });
